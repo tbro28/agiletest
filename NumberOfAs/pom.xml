@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>agile.assignments</groupId>
+  <artifactId>CP510</artifactId>
+  <version>09</version>
+
+  <name>AgileTest</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+    <student>BrownTJ</student>
+    <project.build.sourceEncoding>
+      UTF-8
+    </project.build.sourceEncoding>
+    <junit_version>5.6.2</junit_version>
+    <javaintro_version>00-01</javaintro_version>
+    <compiler_version>3.8.1</compiler_version>
+    <assembly_version>3.3.0</assembly_version>
+    <surefire_version>2.22.1</surefire_version>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>jstraub-repository</id>
+      <name>javaintro</name>
+      <url>https://faculty.washington.edu/jstraub/repository/</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit_version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit_version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>uw.syp.java.javaintro</groupId>
+      <artifactId>javaintro</artifactId>
+      <version>${javaintro_version}</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
+    <dependency>
+      <groupId>org.jacoco</groupId>
+      <artifactId>jacoco-maven-plugin</artifactId>
+      <version>0.8.5</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.vintage</groupId>
+      <artifactId>junit-vintage-engine</artifactId>
+      <version>5.7.0</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+      <resource>
+        <directory>src/test/resources</directory>
+      </resource>
+    </resources>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${compiler_version}</version>
+          <configuration>
+            <release>11</release>
+            <compilerArgs>--enable-preview</compilerArgs>
+            <compilerArgs>
+              <arg>-Xlint:all</arg>
+              <arg>-Xlint:-serial</arg>
+            </compilerArgs>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <groupId>org.apache.maven.plugins</groupId>
+          <version>${assembly_version}</version>
+          <configuration>
+            <finalName>
+              ${student}-${project.version}
+            </finalName>
+            <formats>
+              <format>tar.gz</format>
+              <format>zip</format>
+            </formats>
+            <descriptorRefs>
+              <descriptorRef>project</descriptorRef>
+            </descriptorRefs>
+            <tarLongFileMode>posix</tarLongFileMode>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${surefire_version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
