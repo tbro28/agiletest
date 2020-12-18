@@ -1,5 +1,11 @@
 package agile.assignments;
 
+/**
+ *
+ * Counts the number of As in a string ( case sensitive ).
+ *
+ * @author Tim
+ */
 public class NumberOfAs {
 
     public int NumberOfAs(String s) throws Exception {

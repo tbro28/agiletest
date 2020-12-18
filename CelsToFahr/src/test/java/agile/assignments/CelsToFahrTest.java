@@ -7,37 +7,25 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.WebDriver;
-
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeDriverService;
-import org.openqa.selenium.edge.EdgeDriverService.*;
 import org.openqa.selenium.edge.EdgeOptions;
-
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 
 
-
-public class BasicTest {
-
+public class CelsToFahrTest {
 
     private WebDriver driver;
-    private String baseUrl;
+    private String baseUrl = "https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html";
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
     private boolean headless = true;
     private String browserDriver = "Firefox";
     String driverPath = "C:\\eclipse\\selenium\\drivers\\";
-
-    //System.setProperty("webdriver.edge.driver", "C://EdgeDriver.exe");
 
     @Before
     public void setUp() throws Exception {
@@ -50,7 +38,6 @@ public class BasicTest {
                 chromeOptions.addArguments("disable-gpu");
                 chromeOptions.addArguments("disable-extensions");
                 driver = new ChromeDriver(chromeOptions);
-                //baseURL = "https://www.google.com/";
             }
             else {
                 ChromeOptions chromeOptions = new ChromeOptions();
@@ -76,25 +63,14 @@ public class BasicTest {
 
             if(headless) {
                 //EdgeDriverService edgeDriverService = new EdgeDriverService(); //Microsoft.Edge.SeleniumTools.EdgeDriverService.CreateChromiumService();
-
                 EdgeOptions edgeOptions = new EdgeOptions();
-//                edgeOptions.setPageLoadStrategy("normal");
-                //edgeOptions.UseChromium = true;
-//                edgeOptions.setCapability("headless");
                 edgeOptions.setCapability("headless", "headless");
                 driver = new EdgeDriver(edgeOptions);
             }
             else {
-
-                //EdgeDriverService edgeDriverService = EdgeDriverService.createDefaultService();
                 EdgeOptions edgeOptions = new EdgeOptions();
-                //edgeOptions.
                 edgeOptions.setPageLoadStrategy("normal");//.PageLoadStrategy = PageLoadStrategy.Normal;
-                //edgeOptions..UseChromium = true;
-                //edgeOptions.AddArguments("--headless");
-
                 driver = new EdgeDriver();
-
             }
 
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -111,7 +87,7 @@ public class BasicTest {
      */
     @Test
     public void testZeroCelsius() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("0");
         driver.findElement(By.xpath("//button[@type='button']")).click();
@@ -130,7 +106,7 @@ public class BasicTest {
      */
     @Test
     public void testNegativeOneCelsius() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("-1");
         driver.findElement(By.xpath("//button[@type='button']")).click();
@@ -149,7 +125,7 @@ public class BasicTest {
      */
     @Test
     public void testPositiveOneCelsius() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("1");
         driver.findElement(By.xpath("//button[@type='button']")).click();
@@ -170,7 +146,7 @@ public class BasicTest {
      */
     @Test
     public void testNoValueCelsius() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("");
         driver.findElement(By.xpath("//button[@type='button']")).click();
@@ -190,7 +166,7 @@ public class BasicTest {
      */
     @Test
     public void testResetButtonCelsius() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("100");
         driver.findElement(By.xpath("//button[@type='button']")).click();
@@ -218,7 +194,7 @@ public class BasicTest {
      */
     @Test
     public void testZeroCelsiusWithADecimal() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("0.");
         driver.findElement(By.xpath("//button[@type='button']")).click();
@@ -238,7 +214,7 @@ public class BasicTest {
      */
     @Test
     public void testPositive100CelsiusWith4DecimalPlaces() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("100.0001");
         driver.findElement(By.xpath("//button[@type='button']")).click();
@@ -258,7 +234,7 @@ public class BasicTest {
      */
     @Test
     public void testNegative100CelsiusWith4DecimalPlaces() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("-100.0001");
         driver.findElement(By.xpath("//button[@type='button']")).click();
@@ -277,7 +253,7 @@ public class BasicTest {
      */
     @Test
     public void testCalculationInputCelsius() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("(-1*8)");
         driver.findElement(By.xpath("//button[@type='button']")).click();
@@ -297,7 +273,7 @@ public class BasicTest {
      */
     @Test
     public void testPositiveOneBillionCelsius() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("1000000000");
         driver.findElement(By.xpath("//button[@type='button']")).click();
@@ -317,7 +293,7 @@ public class BasicTest {
      */
     @Test
     public void testNegativeOneBillionCelsius() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("-1000000000");
         driver.findElement(By.xpath("//button[@type='button']")).click();
@@ -338,7 +314,7 @@ public class BasicTest {
      */
     @Test
     public void testTwoDecimalPointsCelsius() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("1.1.1");
         driver.findElement(By.xpath("//button[@type='button']")).click();
@@ -357,7 +333,7 @@ public class BasicTest {
      */
     @Test
     public void testAlphabeticalCelsius() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("abc");
         driver.findElement(By.xpath("//button[@type='button']")).click();
@@ -379,7 +355,7 @@ public class BasicTest {
      */
     @Test
     public void testAlphanumericNumbersFirstCelsius() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("123abc");
         driver.findElement(By.xpath("//button[@type='button']")).click();
@@ -400,7 +376,7 @@ public class BasicTest {
      */
     @Test
     public void testAlphanumericAlphabeticalFirstCelsius() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("abc123");
         driver.findElement(By.xpath("//button[@type='button']")).click();
@@ -419,7 +395,7 @@ public class BasicTest {
      */
     @Test
     public void testSpecialCharactersCelsius() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("#!@%$^&*");
         driver.findElement(By.xpath("//button[@type='button']")).click();
@@ -438,7 +414,7 @@ public class BasicTest {
      */
     @Test
     public void testJavaScriptCodeInputCelsiusV1() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("open(\"http://google.com/'onClick='alert(1)\", \"_self\")");
         driver.findElement(By.xpath("//button[@type='button']")).click();
@@ -457,7 +433,7 @@ public class BasicTest {
      */
     @Test
     public void testJavaScriptCodeInputCelsiusV2() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("<script>alert('hello')</script>");
         driver.findElement(By.xpath("//button[@type='button']")).click();
@@ -476,7 +452,7 @@ public class BasicTest {
      */
     @Test
     public void testJavaScriptCodeInputCelsiusV3() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("alert()");
         driver.findElement(By.xpath("//button[@type='button']")).click();
@@ -495,7 +471,7 @@ public class BasicTest {
      */
     @Test
     public void testJavaScriptCodeInputCelsiusV4() throws Exception {
-        driver.get("https://www.rapidtables.com/convert/temperature/celsius-to-fahrenheit.html");
+        driver.get(baseUrl);
         driver.findElement(By.id("x")).clear();
         driver.findElement(By.id("x")).sendKeys("&lt;script&gt;alert('testing')&lt;/script&gt;");
         driver.findElement(By.xpath("//button[@type='button']")).click();
